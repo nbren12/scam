@@ -30,4 +30,4 @@ ENV CSMDATA /inputdata
 
 
 WORKDIR /rundir
-CMD /bld/cam
+CMD /bld/cam | tee run_output 
