@@ -1,2 +1,6 @@
 #!/bin/sh
-docker run --privileged -v $(pwd)/run/era40:/rundir  -v $(pwd)/inputdata:/inputdata -it nbren12:cam $1
+runpath=$(cd "$(dirname "$1")"; pwd)/$(basename "$1")
+docker run --privileged \
+       -v $runpath:/rundir \
+       -v /Users/noah/workspace/models/scam/scripts:/scripts \
+       -it nbren12:cam $2

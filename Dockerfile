@@ -26,8 +26,12 @@ RUN cd /bld && \
 RUN cd /bld && make -j 2 > compile_output 2>&1
 
 
+ADD /inputdata /inputdata
 ENV CSMDATA /inputdata
 
+ADD /configure.sh /scripts/configure.sh
+RUN chmod +x /scripts/configure.sh
 
 WORKDIR /rundir
-CMD /bld/cam | tee run_output 
+# CMD /bld/cam | tee run_output 
+CMD /scripts/configure.sh
