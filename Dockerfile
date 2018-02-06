@@ -19,9 +19,10 @@ RUN git clone https://github.com/earthers/cesm-1_2_2 /cesm
 RUN mkdir -p /bld
 RUN cd /bld && \
   $camcfg/configure -scam  -nlev 30 -fc gfortran \
-       -nospmd -nospm -dyn eul -debug \
+       -nospmd -nospm -dyn eul \
        -res 64x128 -fflags '-fbacktrace -fcheck=all' \
-       -ocn aquaplanet # -debug
+       -ocn aquaplanet \ 
+       -chem none  # -debug
 
 RUN cd /bld && make -j 2 > compile_output 2>&1
 
@@ -29,8 +30,7 @@ RUN cd /bld && make -j 2 > compile_output 2>&1
 ADD /inputdata /inputdata
 ENV CSMDATA /inputdata
 
-ADD /configure.sh /scripts/configure.sh
-RUN chmod +x /scripts/configure.sh
+ADD  /scripts /scripts
 
 WORKDIR /rundir
 # CMD /bld/cam | tee run_output 
