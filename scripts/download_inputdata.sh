@@ -1,6 +1,6 @@
 #!/bin/sh
 
-mkdir -p /inputdata
+mkdir -p inputdata
 
 cat << EOF >  files_needed.txt
 inputdata/atm/cam/chem/trop_mozart_aero/aero/aero_1.9x2.5_L26_2000clim_c091112.nc
